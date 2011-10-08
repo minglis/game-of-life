@@ -298,6 +298,16 @@ game.of.life.Game = function() {
 		jQ("#information").text("Game in progress");	
 	}
 
+	function updateCell(cell) {
+		cell.toggleClass('alive');
+		board.updateCellAt(
+			getXCoordinateOfCell(cell.attr("id")), 
+			getYCoordinateOfCell(cell.attr("id")), 
+ 			cell.hasClass('alive')
+		);
+		updateMessage(cell);	
+	}
+
 	this.constructExternalBoardRepresentation = function () {
 		var row = "";
 		for(var i=0; i<game.of.life.parameters.height; i++) {
@@ -315,16 +325,10 @@ game.of.life.Game = function() {
 			jQ("#cellInformation").text("No cell selected.");	
 		});
 		jQ('.cell').mouseenter(function() {	
-			updateMessage(jQ(this));	
+			updateMessage(jQ(this));
 		});
 		jQ('.cell').click(function(e) {
-			jQ(this).toggleClass('alive');
-			board.updateCellAt(
-				getXCoordinateOfCell(jQ(this).attr("id")), 
-				getYCoordinateOfCell(jQ(this).attr("id")), 
-	 			jQ(this).hasClass('alive')
-			);
-			updateMessage(jQ(this));	
+			updateCell(jQ(this));
 		});
 		jQ("#startButton").click(function() {
 			startGame();

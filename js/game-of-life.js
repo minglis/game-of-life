@@ -297,6 +297,11 @@ game.of.life.Game = function() {
 		}, 100);
 		jQ("#information").text("Game in progress");	
 	}
+	
+	function stepGame() {
+		updateScreen();
+		jQ("#information").text("Took 1 step");
+	}
 
 	function updateCell(cell) {
 		cell.toggleClass('alive');
@@ -339,6 +344,9 @@ game.of.life.Game = function() {
 		jQ("#clearButton").click(function() {
 			stopGame();
 			clearBoard();
+		});
+		jQ("#stepButton").click(function() {
+			stepGame();
 		});
 	}
 	

@@ -5,7 +5,8 @@ api_version: 1
 
 handlers:
 - url: /
-  script: main.py
+  static_files: index.html
+  upload: index.html
 
 - url: /css
   static_dir: css

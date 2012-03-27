@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<title>It's the game of life! In your browser!</title>
+	<link href="/css/game-of-life.css" type="text/css" rel="stylesheet">
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+	<script type="text/javascript" src="/js/game-of-life.js"></script>
+	<script type="text/javascript">
+		var jQ = jQuery.noConflict();
+	</script>
+	
+	</head>
+<body>
+		<div class="title">
+			<h2>The Game Of Life</h2>
+		</div>	
+		<div id="instructions" class="instructions">
+			A game of life simulation. See <a href="http://en.wikipedia.org/wiki/Conway's_Game_of_Life">wikipedia</a> for details.
+			<p/>Instructions:
+			<ul>
+				<li>Hover over a square for information on it's current and future state.</li>
+				<li>Click on a square to flip it's state. This can be done when the game is running.</li>
+				<li>The start/stop buttons below the grid will commence and cease a game respectively.</li>
+				<li>Hover over the title to see this again.
+					</li>
+			</ul>
+			<span id="closeInstructions">[x] close</span>
+		</div>
+		<div id="board" class="board"></div>
+		<div id="buttons" class="info">
+			<button id="startButton" class="button">Start game</button>
+			<button id="stopButton" class="button">Stop game</button>
+			<button id="clearButton" class="button">Clear game</button>
+			<button id="stepButton" class="button">Step</button>
+		</div>
+		<div id="information" class="info">Game stopped</div>
+		<div id="cellInformation" class="info">No cell selected.</div>
+		<script type="text/javascript">
+			jQ(document).ready(function() {
+				var gameOfLife = new game.of.life.Game();
+				jQ('#board').append(gameOfLife.constructExternalBoardRepresentation());
+				gameOfLife.setUpMouseEvents();
+				jQ('.title').mouseenter(function(){
+					jQ('.instructions').show();
+				});
+				jQ('.instructions').mouseleave(function(){
+					jQ('.instructions').hide();
+				});
+				jQ('#closeInstructions').click(function(){
+					jQ('.instructions').hide();
+				});
+			});	
+		</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
